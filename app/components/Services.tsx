@@ -186,14 +186,14 @@ export default function Services() {
                   </div>
 
                   {/* CTA Button */}
-                  <motion.button
+                  {/* <motion.button
                     whileHover={{ x: 5 }}
                     whileTap={{ scale: 0.95 }}
                     className="w-full sm:w-auto bg-white/10 backdrop-blur-sm border border-white/30 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl text-sm sm:text-base md:text-lg font-semibold hover:bg-white hover:text-black hover:border-white transition-all duration-300 flex items-center justify-center gap-2 group/btn"
                   >
                     Learn More
                     <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
-                  </motion.button>
+                  </motion.button> */}
                 </div>
               </div>
             </motion.div>

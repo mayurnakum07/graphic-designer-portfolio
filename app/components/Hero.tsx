@@ -4,6 +4,7 @@ import { Mail } from "lucide-react";
 import Image from "next/image";
 import { useRef } from "react";
 import Button from "./Button";
+import { EMAIL } from "../layout";
 
 export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -78,10 +79,19 @@ export default function Hero() {
 
             {/* CTA Buttons */}
             <div className="flex flex-wrap gap-4 mt-4">
-              <Button variant="filled" size="md" icon="→">
+              <Button
+                variant="filled"
+                size="md"
+                icon="→"
+                onClick={() => (window.location.href = "#projects")}
+              >
                 View My Work
               </Button>
-              <Button variant="blank" size="md">
+              <Button
+                variant="blank"
+                size="md"
+                onClick={() => (window.location.href = "#contact")}
+              >
                 Get In Touch
               </Button>
             </div>
@@ -134,6 +144,7 @@ export default function Hero() {
                     size="sm"
                     icon={<Mail className="w-4 h-4" />}
                     className="mt-3 sm:mt-4 w-fit"
+                    onClick={() => (window.location.href = `mailto:${EMAIL}`)}
                   >
                     Let's Collaborate
                   </Button>

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Mail, MapPin, Send } from "lucide-react";
 import Button from "./Button";
+import { EMAIL } from "../layout";
 
 export default function Contact() {
   const [ref, inView] = useInView({
@@ -51,7 +52,7 @@ export default function Contact() {
 
               {/* Email */}
               <motion.a
-                href="mailto:prakash@gmail.com"
+                href={`mailto:${EMAIL}`}
                 whileHover={{ x: 5 }}
                 className="flex items-start gap-4 md:gap-6 p-4 md:p-6 bg-white/5 rounded-xl hover:bg-white/10 transition-all duration-300 mb-4 md:mb-6 group"
               >
@@ -63,7 +64,7 @@ export default function Contact() {
                     Email
                   </p>
                   <p className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold text-white group-hover:text-white transition-colors">
-                    prakash@gmail.com
+                    {EMAIL}
                   </p>
                 </div>
               </motion.a>
@@ -93,9 +94,7 @@ export default function Contact() {
                   size="md"
                   icon={<Send className="w-5 h-5" />}
                   className="w-full sm:w-auto"
-                  onClick={() =>
-                    (window.location.href = "mailto:prakash@gmail.com")
-                  }
+                  onClick={() => (window.location.href = `mailto:${EMAIL}`)}
                 >
                   Send Email
                 </Button>

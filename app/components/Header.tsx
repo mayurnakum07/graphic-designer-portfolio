@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Logo from "./Logo";
 import Link from "next/link";
+import { EMAIL } from "../layout";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -15,6 +16,16 @@ const navLinks = [
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 80);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -28,20 +39,46 @@ export default function Header() {
     <>
       {/* Closed Menu Header */}
       <header
-        className={`fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-white/20 ${
+        className={`sticky top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isMenuOpen ? "hidden" : ""
         }`}
       >
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-5 pointer-events-none">
+        {/* Background - Black initially, Glass effect on scroll */}
+        <div
+          className={`absolute inset-0 transition-all duration-300 backdrop-blur-xl backdrop-saturate-150 ${
+            isScrolled ? "bg-black/40" : "bg-black/80"
+          }`}
+        >
+          {/* Background Pattern - Show like Footer initially */}
           <div
-            className="w-full h-full"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-              backgroundSize: "200px 200px",
-            }}
-          />
+            className={`absolute inset-0 pointer-events-none transition-opacity duration-300 ${
+              isScrolled ? "opacity-5" : "opacity-10"
+            }`}
+          >
+            <div
+              className="w-full h-full"
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+                backgroundSize: "200px 200px",
+              }}
+            />
+          </div>
         </div>
+
+        {/* Bottom Blurry Shadow Effect - Only show when scrolled */}
+        {isScrolled && (
+          <div className="absolute bottom-0 left-0 right-0 h-20 pointer-events-none">
+            <div
+              className="w-full h-full"
+              style={{
+                background:
+                  "linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.6) 100%)",
+                filter: "blur(20px)",
+                transform: "translateY(10px)",
+              }}
+            />
+          </div>
+        )}
 
         <nav className="relative z-10 container mx-auto px-6 lg:px-8">
           <div className="flex h-16 md:h-20 items-center justify-between">
@@ -140,12 +177,12 @@ export default function Header() {
                 <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
                   {/* Left - Contact Info */}
                   <div className="flex flex-col gap-2 text-sm text-white/80">
-                    <p>(312) 555-2468</p>
                     <a
-                      href="mailto:prakash@gmail.com"
+                      href={`mailto:${EMAIL}`}
                       className="underline hover:no-underline hover:text-white transition-colors"
                     >
-                      <span className="mr-2">•</span>prakash@gmail.com
+                      <span className="mr-2">•</span>
+                      {EMAIL}
                     </a>
                   </div>
 
