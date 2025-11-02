@@ -17,10 +17,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Prakash Portfolio",
-  description: "Portfolio website",
-};
+export const EMAIL = "prakashkatariya996@gmail.com";
 
 export default function RootLayout({
   children,
@@ -34,7 +31,7 @@ export default function RootLayout({
       >
         <SplashScreen />
         <Header />
-        <main className="flex-1 pt-16">{children}</main>
+        <main className="flex-1">{children}</main>
         <Footer />
         <SpeedInsights />
         <Analytics />

@@ -4,6 +4,7 @@ import { Download, Mail, MapPin } from "lucide-react";
 import SocialsMenu from "./SocialsMenu";
 import Button from "./Button";
 import Link from "next/link";
+import { EMAIL } from "../layout";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -39,9 +40,11 @@ const Footer = () => {
               Interested in working together?
             </h1>
             <div className="mt-6 flex flex-col md:flex-row items-center md:items-start space-y-4 md:space-y-0 md:space-x-4">
-              <Button variant="filled" size="md">
-                Get in Touch
-              </Button>
+              <Link href="#contact">
+                <Button variant="filled" size="md">
+                  Get in Touch
+                </Button>
+              </Link>
               <Button size="md" icon={<Download className="w-4 h-4" />}>
                 Download CV
               </Button>
@@ -54,7 +57,7 @@ const Footer = () => {
               <p>© {currentYear} All Rights Reserved.</p>
               <p className="hover:text-white transition-colors">
                 <Link
-                  href="https://github.com/mayurnakum07"
+                  href="https://mayurnakum-portfolio.vercel.app"
                   target="_blank"
                   className="mt-1"
                 >
@@ -68,14 +71,14 @@ const Footer = () => {
         {/* Contact Info */}
         <div className="border-t border-white/10 pt-6 mt-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-white/70">
-            <div className="flex items-center gap-4">
-              <a
-                href="mailto:prakash@gmail.com"
-                className="flex items-center gap-2 hover:text-white transition-colors"
+            <div className="hover:text-white transition-colors flex items-center gap-4">
+              <Link
+                href={`mailto:${EMAIL}`}
+                className="flex items-center gap-2"
               >
                 <Mail className="w-4 h-4" />
-                <span>prakash@gmail.com</span>
-              </a>
+                <span>{EMAIL}</span>
+              </Link>
             </div>
             <div className="flex items-center gap-2">
               <MapPin className="w-4 h-4" />
